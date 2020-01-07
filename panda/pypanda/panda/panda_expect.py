@@ -49,7 +49,7 @@ class Expect(object):
     def abort(self):
         self.running = False
 
-    def expect(self, expectation=None, timeout=30):
+    def expect(self, expectation=None, timeout=60):
         if not expectation:
             expectation = self.expectation
         # Wait until we get expectation back, up to timeout. Return data between last_command and expectation
