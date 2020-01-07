@@ -1,5 +1,5 @@
-# The current Travis default is a VM based 16.04 Xenial on GCE
-dist: xenial
+# The current Travis default is a VM based 18.04 Bionic on GCE
+dist: bionic
 language: c
 compiler:
   - gcc
