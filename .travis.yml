@@ -102,7 +102,7 @@ before_script:
 
 script:
   # Don't ever link against libmirprotobuf3
-  - apt -y remove libmirprotobuf3
+  - sudo apt -y remove libmirprotobuf3 || travis_terminate 1;
   # Run install script
   - sudo panda/scripts/install_ubuntu.sh || travis_terminate 1; # Build panda
   - ldd build/i386-softmmu/libpanda-i386.so |grep proto # Print deps for travis testing
