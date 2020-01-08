@@ -44,6 +44,7 @@ addons:
       - libssh-dev
       - liburcu-dev
       - libusb-1.0-0-dev
+      - libvte-2.91-dev
       - sparse
       - uuid-dev
       # PANDA stuff
@@ -100,8 +101,11 @@ before_script:
   - pip3 install cffi colorama protobuf # PYPANDA dependencies - not auto installed by setup because we don't use pip to install pypanda
 
 script:
+  # Don't ever link against libmirprotobuf3
+  - apt -y remove libmirprotobuf3
   # Run install script
   - sudo panda/scripts/install_ubuntu.sh || travis_terminate 1; # Build panda
+  - ldd build/i386-softmmu/libpanda-i386.so |grep proto # Print deps for travis testing
   # Install pypanda
   - cd panda/pypanda
   - python3 setup.py install || travis_terminate 1
